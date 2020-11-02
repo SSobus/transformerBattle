@@ -14,8 +14,17 @@ public class BattleServiceImpl implements BattleService {
     private List<Transformer> autobots;
     private List<Transformer> decepticons;
 
+    private final TransformersService transformersService;
+
+    public BattleServiceImpl(TransformersService transformersService) {
+        this.transformersService = transformersService;
+    }
+
     @Override
-    public Outcome battle(List<Transformer> transformers) {
+    public Outcome battle(List<Integer> transformerIds) {
+        //get Transformers by ids
+        List<Transformer> transformers = transformersService.listTransformersByIds(transformerIds);
+
         List<BattleResult> battleResults;
         autobots = new ArrayList<>();
         decepticons = new ArrayList<>();

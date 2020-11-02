@@ -86,4 +86,9 @@ public class TransformersServiceImpl implements TransformersService {
     public List<Transformer> listTransformers() {
         return transformerRepository.findAll();
     }
+
+    @Override
+    public List<Transformer> listTransformersByIds(List<Integer> transformerIds) {
+        return transformerRepository.findAllById(transformerIds);
+    }
 }

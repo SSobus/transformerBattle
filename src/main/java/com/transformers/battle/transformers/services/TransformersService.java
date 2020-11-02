@@ -15,4 +15,6 @@ public interface TransformersService {
     void deleteTransformers(Integer id);
 
     List<Transformer> listTransformers();
+
+    List<Transformer> listTransformersByIds(List<Integer> transformerIds);
 }

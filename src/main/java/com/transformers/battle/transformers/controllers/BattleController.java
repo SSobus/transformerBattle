@@ -1,7 +1,6 @@
 package com.transformers.battle.transformers.controllers;
 
 import com.transformers.battle.transformers.model.Outcome;
-import com.transformers.battle.transformers.model.Transformer;
 import com.transformers.battle.transformers.services.BattleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +19,8 @@ public class BattleController {
     }
 
     @PostMapping("/battle")
-    public ResponseEntity<Outcome> battle(@RequestBody List<Transformer> transformers) {
-        Outcome outcome = battleService.battle(transformers);
+    public ResponseEntity<Outcome> battle(@RequestBody List<Integer> transformerIds) {
+        Outcome outcome = battleService.battle(transformerIds);
         return ResponseEntity.ok(outcome);
     }
 }
