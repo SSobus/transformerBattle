@@ -199,7 +199,7 @@ public class TransformersServiceImplTest {
         transformer.setCourage(courage);
         transformer.setFirepower(firepower);
 
-        transformer.determineSkill();
+        transformer.setSkill(transformer.determineSkill());
 
         return transformer;
     }

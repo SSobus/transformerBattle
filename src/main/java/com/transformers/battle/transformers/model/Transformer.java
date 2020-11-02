@@ -148,14 +148,16 @@ public class Transformer implements Comparable<Transformer> {
         return skill;
     }
 
+    public void setSkill(Integer skill) {
+        this.skill = skill;
+    }
+
     public Integer determineSkill() {
         return (strength + intelligence + speed + endurance + firepower);
     }
 
     @Override
     public int compareTo(@NotNull Transformer o) {
-        if (name.equals("Optimus Prime") || name.equals("Predaking")) {
-            return 1;
-        } else return skill.compareTo(o.skill);
+        return rank.compareTo(o.rank);
     }
 }
