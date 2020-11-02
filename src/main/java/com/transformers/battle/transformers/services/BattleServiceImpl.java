@@ -3,11 +3,13 @@ package com.transformers.battle.transformers.services;
 import com.transformers.battle.transformers.TransformersApplication;
 import com.transformers.battle.transformers.model.*;
 import com.transformers.battle.transformers.strategies.BattleStrategy;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Service
 public class BattleServiceImpl implements BattleService {
     private List<Transformer> autobots;
     private List<Transformer> decepticons;

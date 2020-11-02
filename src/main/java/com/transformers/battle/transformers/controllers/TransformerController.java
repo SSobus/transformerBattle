@@ -13,34 +13,36 @@ public class TransformerController {
     TransformersService transformersService;
 
     TransformerController(TransformersService transformersService){
+        this.transformersService = transformersService;
     }
 
     @GetMapping("/transformers/{id}")
     public ResponseEntity<Transformer> getTransformer(@PathVariable Integer id){
         Transformer transformer = transformersService.getTransformers(id);
-
         return ResponseEntity.ok(transformer);
     }
 
     @PostMapping("/transformers")
-    public void createTransformer(){
-
+    public ResponseEntity<Integer> createTransformer(@RequestBody Transformer transformer) {
+        Integer result = transformersService.createTransformers(transformer);
+        return ResponseEntity.ok(result);
     }
 
     @PutMapping("/transformers/{id}")
-    public void updateTransformer(@PathVariable Integer id){
-
+    public ResponseEntity<Integer> updateTransformer(@PathVariable Integer id, @RequestBody Transformer transformer) {
+        Integer result = transformersService.postTransformers(transformer);
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/transformers/{id}")
-    public void deleteTransformer(@PathVariable Integer id){
-
+    public ResponseEntity<String> deleteTransformer(@PathVariable Integer id) {
+        transformersService.deleteTransformers(id);
+        return ResponseEntity.ok("Success");
     }
 
     @GetMapping("/transformers")
     public ResponseEntity<List<Transformer>> getTransformersList(){
         List<Transformer> transformers = transformersService.listTransformers();
-
         return ResponseEntity.ok(transformers);
     }
 }
