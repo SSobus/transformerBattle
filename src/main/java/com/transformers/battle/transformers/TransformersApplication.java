@@ -4,6 +4,7 @@ import com.transformers.battle.transformers.strategies.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -14,6 +15,7 @@ public class TransformersApplication {
     public static void main(String[] args) {
         SpringApplication.run(TransformersApplication.class, args);
 
+        battleStrategies = new ArrayList<>();
         battleStrategies.add(new SpecialNameBattleStrategy());
         battleStrategies.add(new CourageAndStrengthBattleStrategy());
         battleStrategies.add(new RankBattleStrategy());

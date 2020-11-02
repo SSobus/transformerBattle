@@ -23,19 +23,19 @@ public class TransformerController {
     }
 
     @PostMapping("/transformers")
-    public ResponseEntity<Integer> createTransformer(@RequestBody Transformer transformer) {
-        Integer result = transformersService.createTransformers(transformer);
+    public ResponseEntity<Long> createTransformer(@RequestBody Transformer transformer) {
+        Long result = transformersService.createTransformers(transformer);
         return ResponseEntity.ok(result);
     }
 
     @PutMapping("/transformers/{id}")
-    public ResponseEntity<Integer> updateTransformer(@PathVariable Integer id, @RequestBody Transformer transformer) {
-        Integer result = transformersService.postTransformers(transformer);
+    public ResponseEntity<Long> updateTransformer(@PathVariable Long id, @RequestBody Transformer transformer) {
+        Long result = transformersService.postTransformers(transformer);
         return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/transformers/{id}")
-    public ResponseEntity<String> deleteTransformer(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteTransformer(@PathVariable Long id) {
         transformersService.deleteTransformers(id);
         return ResponseEntity.ok("Success");
     }

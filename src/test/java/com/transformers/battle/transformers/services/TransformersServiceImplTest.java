@@ -39,8 +39,8 @@ public class TransformersServiceImplTest {
     void shouldCreateTransformer() {
         Transformer transformer = initializeTransformer("Ironhide", TransformerType.AUTOBOT, 1, 2, 3, 4, 5, 6, 7);
         when(transformerRepository.save(any(Transformer.class))).thenReturn(transformer);
-        Integer result = transformersService.createTransformers(transformer);
-        Assert.assertEquals(1, (int) result);
+        Long result = transformersService.createTransformers(transformer);
+        Assert.assertEquals(1, (long) result);
     }
 
     @Test
@@ -90,9 +90,9 @@ public class TransformersServiceImplTest {
         when(transformerRepository.save(any(Transformer.class))).thenReturn(transformer);
         when(transformerRepository.getOne(any(Integer.class))).thenReturn(transformer);
 
-        Integer result = transformersService.postTransformers(transformer);
+        Long result = transformersService.postTransformers(transformer);
 
-        Assert.assertEquals(1, (int) result);
+        Assert.assertEquals(1, (long) result);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class TransformersServiceImplTest {
     private Transformer initializeTransformer(String name, TransformerType type, Integer strength, Integer intelligence, Integer speed, Integer endurance, Integer rank, Integer courage, Integer firepower) {
         Transformer transformer = new Transformer();
 
-        transformer.setId(1);
+        transformer.setId((long) 1);
 
         transformer.setName(name);
         transformer.setType(type);

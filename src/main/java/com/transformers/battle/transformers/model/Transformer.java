@@ -11,6 +11,8 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 public class Transformer implements Comparable<Transformer> {
 
+    private static final long serialVersionUID = 1L;
+
     @NotNull
     @NotEmpty
     String name;
@@ -55,7 +57,7 @@ public class Transformer implements Comparable<Transformer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Transient
     private Integer skill;
@@ -64,11 +66,11 @@ public class Transformer implements Comparable<Transformer> {
     }
 
     @Id
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

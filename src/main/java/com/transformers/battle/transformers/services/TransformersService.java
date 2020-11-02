@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface TransformersService {
 
-    Integer createTransformers(Transformer transformer);
+    Long createTransformers(Transformer transformer);
 
     Transformer getTransformers(Integer id);
 
-    Integer postTransformers(Transformer transformer);
+    Long postTransformers(Transformer transformer);
 
-    void deleteTransformers(Integer id);
+    void deleteTransformers(Long id);
 
     List<Transformer> listTransformers();
 

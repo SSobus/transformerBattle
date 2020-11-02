@@ -27,7 +27,7 @@ public class TransformersServiceImpl implements TransformersService {
     }
 
     @Override
-    public Integer createTransformers(Transformer transformer) {
+    public Long createTransformers(Transformer transformer) {
         Set<ConstraintViolation<Transformer>> constraintViolations = validator.validate(transformer);
 
         if (!constraintViolations.isEmpty()) {
@@ -45,7 +45,7 @@ public class TransformersServiceImpl implements TransformersService {
     }
 
     @Override
-    public Integer postTransformers(Transformer transformer) {
+    public Long postTransformers(Transformer transformer) {
         Set<ConstraintViolation<Transformer>> constraintViolations = validator.validate(transformer);
 
         if (!constraintViolations.isEmpty()) {
@@ -57,7 +57,7 @@ public class TransformersServiceImpl implements TransformersService {
         }
 
         try {
-            transformerRepository.getOne(transformer.getId());
+            transformerRepository.getOne(Math.toIntExact(transformer.getId()));
         } catch (EntityNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found, Id does not exist");
         }
@@ -67,19 +67,19 @@ public class TransformersServiceImpl implements TransformersService {
     }
 
     @Override
-    public void deleteTransformers(Integer id) {
+    public void deleteTransformers(Long id) {
 
         if (id == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot delete blank id");
         }
 
         try {
-            transformerRepository.getOne(id);
+            transformerRepository.getOne(Math.toIntExact(id));
         } catch (EntityNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found, Id does not exist");
         }
 
-        transformerRepository.deleteById(id);
+        transformerRepository.deleteById(Math.toIntExact(id));
     }
 
     @Override
