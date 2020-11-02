@@ -4,31 +4,59 @@ package com.transformers.battle.transformers.model;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Transformer implements Comparable<Transformer> {
 
     @NotNull
+    @NotEmpty
     String name;
 
     @NotNull
     TransformerType type;
+
     @NotNull
+    @Min(1)
+    @Max(10)
     Integer strength;
+
     @NotNull
+    @Min(1)
+    @Max(10)
     Integer intelligence;
+
     @NotNull
+    @Min(1)
+    @Max(10)
     Integer endurance;
+
+    @NotNull
+    @Min(1)
+    @Max(10)
     Integer speed;
+
     @NotNull
+    @Min(1)
+    @Max(10)
     Integer rank;
+
     @NotNull
+    @Min(1)
+    @Max(10)
     Integer courage;
+
     @NotNull
+    @Min(1)
+    @Max(10)
     Integer firepower;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     @Transient
     private Integer skill;
 
