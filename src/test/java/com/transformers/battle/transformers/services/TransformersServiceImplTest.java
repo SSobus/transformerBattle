@@ -44,7 +44,7 @@ public class TransformersServiceImplTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenSkillGreaterThan10() throws Exception {
+    void shouldThrowExceptionWhenSkillGreaterThan10() {
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             Transformer transformer = initializeTransformer("Slug", TransformerType.AUTOBOT, 11, 1, 1, 1, 1, 1, 1);
             transformersService.createTransformers(transformer);
@@ -54,7 +54,7 @@ public class TransformersServiceImplTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenSkillLessThan1() throws Exception {
+    void shouldThrowExceptionWhenSkillLessThan1() {
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             Transformer transformer = initializeTransformer("Slug", TransformerType.AUTOBOT, 0, 1, 1, 1, 1, 1, 1);
             transformersService.createTransformers(transformer);
@@ -64,7 +64,7 @@ public class TransformersServiceImplTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenNameBlank() throws Exception {
+    void shouldThrowExceptionWhenNameBlank() {
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             Transformer transformer = initializeTransformer("", TransformerType.AUTOBOT, 0, 1, 1, 1, 1, 1, 1);
             transformersService.createTransformers(transformer);
@@ -111,7 +111,7 @@ public class TransformersServiceImplTest {
     void shouldThrowExceptionWhenIdDoesNotExist() {
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             Transformer transformer = initializeTransformer("Barricade", TransformerType.DECEPTICON, 10, 9, 8, 7, 6, 5, 4);
-            when(transformerRepository.getOne(any(Integer.class))).thenReturn(null);
+            doThrow(EntityNotFoundException.class).when(transformerRepository).getOne(any(Integer.class));
 
             transformersService.postTransformers(transformer);
         });
