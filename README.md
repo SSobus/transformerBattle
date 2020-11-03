@@ -67,9 +67,9 @@ Post a list of Transformer Ids to battle
 You can use multiple transformers to battle
 
 ```json
-{
-  "transformerIds": [1,2,3]
-}
+
+  [1,2,3]
+
 ```
 
 # Assumptions
