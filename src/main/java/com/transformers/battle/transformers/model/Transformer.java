@@ -1,17 +1,15 @@
 package com.transformers.battle.transformers.model;
 
-
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
-public class Transformer implements Comparable<Transformer> {
-
-    private static final long serialVersionUID = 1L;
+public class Transformer implements Serializable, Comparable<Transformer> {
 
     @NotNull
     @NotEmpty
@@ -56,7 +54,8 @@ public class Transformer implements Comparable<Transformer> {
     Integer firepower;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "TransformerGen", sequenceName = "TransformerSeq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "TransformerGen")
     private Long id;
 
     @Transient

@@ -39,47 +39,50 @@ public class TransformersServiceImpl implements TransformersService {
     }
 
     @Override
-    public Transformer getTransformers(Integer id) {
+    public Transformer getTransformers(Long id) {
         Transformer entity = transformerRepository.getOne(id);
         return entity;
     }
 
     @Override
-    public Long postTransformers(Transformer transformer) {
+    public Long putTransformers(Transformer transformer) {
         Set<ConstraintViolation<Transformer>> constraintViolations = validator.validate(transformer);
 
         if (!constraintViolations.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, constraintViolations.toString());
         }
 
-        if (transformer.getId() == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot update blank id");
-        }
-
         try {
-            transformerRepository.getOne(Math.toIntExact(transformer.getId()));
-        } catch (EntityNotFoundException ex) {
+            Transformer existing = transformerRepository.getOne(transformer.getId());
+
+            existing.setName(transformer.getName());
+            existing.setType(transformer.getType());
+            existing.setStrength(transformer.getStrength());
+            existing.setIntelligence(transformer.getIntelligence());
+            existing.setSpeed(transformer.getSpeed());
+            existing.setEndurance(transformer.getEndurance());
+            existing.setRank(transformer.getRank());
+            existing.setCourage(transformer.getCourage());
+            existing.setFirepower(transformer.getFirepower());
+
+            transformerRepository.save(existing);
+            return existing.getId();
+
+        } catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found, Id does not exist");
         }
-
-        Transformer entity = transformerRepository.save(transformer);
-        return entity.getId();
     }
 
     @Override
     public void deleteTransformers(Long id) {
 
-        if (id == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot delete blank id");
-        }
-
         try {
-            transformerRepository.getOne(Math.toIntExact(id));
+            transformerRepository.getOne(id);
         } catch (EntityNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found, Id does not exist");
         }
 
-        transformerRepository.deleteById(Math.toIntExact(id));
+        transformerRepository.deleteById(id);
     }
 
     @Override
@@ -88,7 +91,7 @@ public class TransformersServiceImpl implements TransformersService {
     }
 
     @Override
-    public List<Transformer> listTransformersByIds(List<Integer> transformerIds) {
+    public List<Transformer> listTransformersByIds(List<Long> transformerIds) {
         return transformerRepository.findAllById(transformerIds);
     }
 }

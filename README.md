@@ -18,7 +18,6 @@ Type is "A" or "D"
 
 ```json
 {
-    "transformer": {
         "name": "name",
         "type": "D",
         "strength": 1,
@@ -28,7 +27,6 @@ Type is "A" or "D"
         "rank": 1,
         "courage": 1,
         "firepower": 1
-    }
 }
 ```
 
@@ -42,17 +40,15 @@ Type is "A" or "D"
 
 ```json
 {
-    "transformer": {
-        "name": "name",
-        "type": "D",
-        "strength": 1,
-        "intelligence": 1,
-        "endurance": 1,
-        "speed": 1,
-        "rank": 1,
-        "courage": 1,
-        "firepower": 1
-    }
+    "name": "name",
+    "type": "D",
+    "strength": 1,
+    "intelligence": 1,
+    "endurance": 1,
+    "speed": 1,
+    "rank": 1,
+    "courage": 1,
+    "firepower": 1
 }
 ```
 

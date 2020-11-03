@@ -8,13 +8,13 @@ public interface TransformersService {
 
     Long createTransformers(Transformer transformer);
 
-    Transformer getTransformers(Integer id);
+    Transformer getTransformers(Long id);
 
-    Long postTransformers(Transformer transformer);
+    Long putTransformers(Transformer transformer);
 
     void deleteTransformers(Long id);
 
     List<Transformer> listTransformers();
 
-    List<Transformer> listTransformersByIds(List<Integer> transformerIds);
+    List<Transformer> listTransformersByIds(List<Long> transformerIds);
 }

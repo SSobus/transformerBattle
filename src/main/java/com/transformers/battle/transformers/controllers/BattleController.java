@@ -19,7 +19,7 @@ public class BattleController {
     }
 
     @PostMapping("/battle")
-    public ResponseEntity<Outcome> battle(@RequestBody List<Integer> transformerIds) {
+    public ResponseEntity<Outcome> battle(@RequestBody List<Long> transformerIds) {
         Outcome outcome = battleService.battle(transformerIds);
         return ResponseEntity.ok(outcome);
     }

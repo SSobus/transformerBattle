@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.transformers.battle.transformers.TransformerGenerator.initializeTransformer;
+import static com.transformers.battle.transformers.TransformerGenerator.initializeTransformerNoId;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -78,43 +79,31 @@ public class TransformersServiceImplTest {
     @Test
     void getTransformers() {
         Transformer transformer = initializeTransformer("Barricade", TransformerType.DECEPTICON, 10, 9, 8, 7, 6, 5, 4);
-        when(transformerRepository.getOne(any(Integer.class))).thenReturn(transformer);
+        when(transformerRepository.getOne(any(Long.class))).thenReturn(transformer);
 
-        Transformer result = transformersService.getTransformers(1);
+        Transformer result = transformersService.getTransformers(1L);
 
         Assert.assertNotNull(result);
     }
 
     @Test
-    void postTransformers() {
+    void putTransformers() {
         Transformer transformer = initializeTransformer("Barricade", TransformerType.DECEPTICON, 10, 9, 8, 7, 6, 5, 4);
         when(transformerRepository.save(any(Transformer.class))).thenReturn(transformer);
-        when(transformerRepository.getOne(any(Integer.class))).thenReturn(transformer);
+        when(transformerRepository.getOne(any(Long.class))).thenReturn(transformer);
 
-        Long result = transformersService.postTransformers(transformer);
+        Long result = transformersService.putTransformers(transformer);
 
         Assert.assertEquals(1, (long) result);
     }
 
     @Test
-    void shouldThrowExceptionWhenIdNull() {
-        Exception exception = assertThrows(ResponseStatusException.class, () -> {
-            Transformer transformer = initializeTransformer("Barricade", TransformerType.DECEPTICON, 10, 9, 8, 7, 6, 5, 4);
-            transformer.setId(null);
-
-            transformersService.postTransformers(transformer);
-        });
-
-        assertTrue(exception.getMessage().contains("blank id"));
-    }
-
-    @Test
     void shouldThrowExceptionWhenIdDoesNotExist() {
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
-            Transformer transformer = initializeTransformer("Barricade", TransformerType.DECEPTICON, 10, 9, 8, 7, 6, 5, 4);
-            doThrow(EntityNotFoundException.class).when(transformerRepository).getOne(any(Integer.class));
+            Transformer transformer = initializeTransformerNoId("Barricade", TransformerType.DECEPTICON, 10, 9, 8, 7, 6, 5, 4);
+            doThrow(EntityNotFoundException.class).when(transformerRepository).getOne(any(Long.class));
 
-            transformersService.postTransformers(transformer);
+            transformersService.putTransformers(transformer);
         });
 
         assertTrue(exception.getMessage().contains("does not exist"));
@@ -125,8 +114,8 @@ public class TransformersServiceImplTest {
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             Transformer transformer = initializeTransformer("Slug", TransformerType.AUTOBOT, 11, 1, 1, 1, 1, 1, 1);
             when(transformerRepository.save(any(Transformer.class))).thenReturn(transformer);
-            when(transformerRepository.getOne(any(Integer.class))).thenReturn(transformer);
-            transformersService.postTransformers(transformer);
+            when(transformerRepository.getOne(any(Long.class))).thenReturn(transformer);
+            transformersService.putTransformers(transformer);
         });
 
         assertTrue(exception.getMessage().contains("strength"));
@@ -137,8 +126,8 @@ public class TransformersServiceImplTest {
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             Transformer transformer = initializeTransformer("Slug", TransformerType.AUTOBOT, 0, 1, 1, 1, 1, 1, 1);
             when(transformerRepository.save(any(Transformer.class))).thenReturn(transformer);
-            when(transformerRepository.getOne(any(Integer.class))).thenReturn(transformer);
-            transformersService.postTransformers(transformer);
+            when(transformerRepository.getOne(any(Long.class))).thenReturn(transformer);
+            transformersService.putTransformers(transformer);
         });
 
         assertTrue(exception.getMessage().contains("strength"));
@@ -147,30 +136,30 @@ public class TransformersServiceImplTest {
     @Test
     void deleteTransformers() {
         Transformer transformer = initializeTransformer("Barricade", TransformerType.DECEPTICON, 10, 9, 8, 7, 6, 5, 4);
-        doNothing().when(transformerRepository).deleteById(any(Integer.class));
+        doNothing().when(transformerRepository).deleteById(any(Long.class));
 
         transformersService.deleteTransformers(transformer.getId());
     }
 
-    @Test
-    void shouldThrowExceptionWhenNullId() {
-        Exception exception = assertThrows(ResponseStatusException.class, () -> {
-            doNothing().when(transformerRepository).deleteById(any(Integer.class));
-            transformersService.deleteTransformers(null);
-        });
+//    @Test
+//    void shouldThrowExceptionWhenNullId() {
+//        Exception exception = assertThrows(ResponseStatusException.class, () -> {
+//            doNothing().when(transformerRepository).deleteById(any(Integer.class));
+//            transformersService.deleteTransformers(null);
+//        });
+//
+//        assertTrue(exception.getMessage().contains("blank id"));
+//    }
 
-        assertTrue(exception.getMessage().contains("blank id"));
-    }
-
-    @Test
-    void shouldThrowExceptionWhenIdNotFound() {
-        Exception exception = assertThrows(ResponseStatusException.class, () -> {
-            doThrow(EntityNotFoundException.class).when(transformerRepository).deleteById(any(Integer.class));
-            transformersService.deleteTransformers(null);
-        });
-
-        assertTrue(exception.getMessage().contains("blank id"));
-    }
+//    @Test
+//    void shouldThrowExceptionWhenIdNotFound() {
+//        Exception exception = assertThrows(ResponseStatusException.class, () -> {
+//            doThrow(EntityNotFoundException.class).when(transformerRepository).deleteById(any(Integer.class));
+//            transformersService.deleteTransformers(null);
+//        });
+//
+//        assertTrue(exception.getMessage().contains("blank id"));
+//    }
 
     @Test
     void listTransformers() {

@@ -21,7 +21,7 @@ public class BattleServiceImpl implements BattleService {
     }
 
     @Override
-    public Outcome battle(List<Integer> transformerIds) {
+    public Outcome battle(List<Long> transformerIds) {
         //get Transformers by ids
         List<Transformer> transformers = transformersService.listTransformersByIds(transformerIds);
 

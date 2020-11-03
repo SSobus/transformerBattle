@@ -17,7 +17,7 @@ public class TransformerController {
     }
 
     @GetMapping("/transformers/{id}")
-    public ResponseEntity<Transformer> getTransformer(@PathVariable Integer id){
+    public ResponseEntity<Transformer> getTransformer(@PathVariable Long id) {
         Transformer transformer = transformersService.getTransformers(id);
         return ResponseEntity.ok(transformer);
     }
@@ -30,7 +30,7 @@ public class TransformerController {
 
     @PutMapping("/transformers/{id}")
     public ResponseEntity<Long> updateTransformer(@PathVariable Long id, @RequestBody Transformer transformer) {
-        Long result = transformersService.postTransformers(transformer);
+        Long result = transformersService.putTransformers(transformer);
         return ResponseEntity.ok(result);
     }
 
