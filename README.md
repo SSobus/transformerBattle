@@ -2,7 +2,7 @@
 
 ## Setup
 
-This project uses Spring Boot and Maven.
+This project uses Spring Boot and Maven. We can manage Transformers and select some to 'Fight' in a battle. The battles conform to a set of rules that can be found in the document 'ProjectInformation.pdf' in the source.
 
 To deploy:
 
