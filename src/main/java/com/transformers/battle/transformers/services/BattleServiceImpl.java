@@ -41,7 +41,7 @@ public class BattleServiceImpl implements BattleService {
         int minSize = Math.min(autobots.size(), decepticons.size());
 
         //battle
-        for (int index = 0; index < minSize; index++) {
+        for (int index = 0; index < minSize - 1; index++) {
             //clear strategy results
             battleResults = new ArrayList<>();
 
