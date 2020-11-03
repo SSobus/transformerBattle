@@ -11,6 +11,10 @@ import java.io.Serializable;
 @Entity
 public class Transformer implements Serializable, Comparable<Transformer> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @NotNull
     @NotEmpty
     String name;
@@ -53,18 +57,9 @@ public class Transformer implements Serializable, Comparable<Transformer> {
     @Max(10)
     Integer firepower;
 
-    @Id
-    @SequenceGenerator(name = "TransformerGen", sequenceName = "TransformerSeq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "TransformerGen")
-    private Long id;
-
     @Transient
     private Integer skill;
 
-    public Transformer() {
-    }
-
-    @Id
     public Long getId() {
         return id;
     }
