@@ -15,6 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.transformers.battle.transformers.TransformerGenerator.initializeTransformer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -184,23 +185,4 @@ public class TransformersServiceImplTest {
         assertEquals(2, result.size());
     }
 
-    private Transformer initializeTransformer(String name, TransformerType type, Integer strength, Integer intelligence, Integer speed, Integer endurance, Integer rank, Integer courage, Integer firepower) {
-        Transformer transformer = new Transformer();
-
-        transformer.setId((long) 1);
-
-        transformer.setName(name);
-        transformer.setType(type);
-        transformer.setStrength(strength);
-        transformer.setIntelligence(intelligence);
-        transformer.setSpeed(speed);
-        transformer.setEndurance(endurance);
-        transformer.setRank(rank);
-        transformer.setCourage(courage);
-        transformer.setFirepower(firepower);
-
-        transformer.setSkill(transformer.determineSkill());
-
-        return transformer;
-    }
 }
