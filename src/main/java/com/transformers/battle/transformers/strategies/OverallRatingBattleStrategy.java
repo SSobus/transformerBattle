@@ -10,16 +10,12 @@ public class OverallRatingBattleStrategy implements BattleStrategy {
         autobot.setSkill(autobot.determineSkill());
         decepticon.setSkill(decepticon.determineSkill());
 
-        if (autobot.getSkill().equals(decepticon.getSkill())) {
-            return new BattleResult(null, BattleOutcome.BOTH_DESTROYED, "Equal Rating, No winner");
-        }
-
         if (autobot.getSkill() > decepticon.getSkill()) {
             return new BattleResult(autobot, BattleOutcome.AUTOBOT_WIN, "Autobot Skill Win");
         } else if (autobot.getSkill() < decepticon.getSkill()) {
             return new BattleResult(decepticon, BattleOutcome.DECEPTICON_WIN, "Decepticon Skill Win");
         }
 
-        return new BattleResult(decepticon, BattleOutcome.NOT_APPLICABLE, "Not Applicable");
+        return new BattleResult(null, BattleOutcome.BOTH_DESTROYED, "Equal Rating, No winner");
     }
 }
