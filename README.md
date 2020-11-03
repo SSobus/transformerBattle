@@ -18,15 +18,17 @@ Type is "A" or "D"
 
 ```json
 {
-    "name": "name",
-    "type": "D",
-    "strength": 1,
-    "intelligence": 1,
-    "endurance": 1,
-    "speed": 1,
-    "rank": 1,
-    "courage": 1,
-    "firepower": 1
+    "transformer": {
+        "name": "name",
+        "type": "D",
+        "strength": 1,
+        "intelligence": 1,
+        "endurance": 1,
+        "speed": 1,
+        "rank": 1,
+        "courage": 1,
+        "firepower": 1
+    }
 }
 ```
 
@@ -40,15 +42,17 @@ Type is "A" or "D"
 
 ```json
 {
-    "name": "name",
-    "type": "D",
-    "strength": 1,
-    "intelligence": 1,
-    "endurance": 1,
-    "speed": 1,
-    "rank": 1,
-    "courage": 1,
-    "firepower": 1
+    "transformer": {
+        "name": "name",
+        "type": "D",
+        "strength": 1,
+        "intelligence": 1,
+        "endurance": 1,
+        "speed": 1,
+        "rank": 1,
+        "courage": 1,
+        "firepower": 1
+    }
 }
 ```
 
@@ -68,11 +72,11 @@ You can use multiple transformers to battle
 
 ```json
 {
-  "transformerIds": [1,2,3...]
+  "transformerIds": [1,2,3]
 }
 ```
 
 # Assumptions
 The requirement "Otherwise, if one of the fighters is 3 or more points of **skill** above their opponent, they win the fight regardless of overall rating" seemed wrong. 
-There is a rule about the Skill(Overall Rating) so I assumed "Otherwise, if one of the fighters is 3 or more points of **rank** above their opponent,
-                                                                                                                                              they win the fight regardless of overall rating"
+There is a rule about the Skill(Overall Rating), so I assumed "Otherwise, if one of the fighters is 3 or more points of **rank** above their opponent,
+                                                                                                                                              they win the fight regardless of overall rating."
