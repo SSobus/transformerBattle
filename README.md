@@ -14,7 +14,7 @@ Run the 'TransformersApplication' in your IDE.
 
 The project deploys locally to localhost:8080.
 
-There is no UI for the project, just RESTful endpoints listed below.
+There is no UI for the project, just RESTful endpoints that are listed below.
 
 You can look at the H2 database by going to http://localhost:8080/h2-console.
 There is no password so just login.
