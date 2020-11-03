@@ -31,8 +31,8 @@ public class BattleServiceImpl implements BattleService {
 
         splitTransformerTeams(transformers);
 
-        Collections.sort(autobots);
-        Collections.sort(decepticons);
+        autobots.sort(Collections.reverseOrder());
+        decepticons.sort(Collections.reverseOrder());
 
         int battles = 0;
         int autobotWins = 0;
@@ -41,7 +41,7 @@ public class BattleServiceImpl implements BattleService {
         int minSize = Math.min(autobots.size(), decepticons.size());
 
         //battle
-        for (int index = 0; index < minSize - 1; index++) {
+        for (int index = 0; index <= minSize - 1; index++) {
             //clear strategy results
             battleResults = new ArrayList<>();
 
@@ -78,9 +78,9 @@ public class BattleServiceImpl implements BattleService {
         }
 
         if (autobots.size() > minSize) {
-            outcome.setSurvivingMembers(autobots.subList(minSize, autobots.size() - 1));
+            outcome.setSurvivingMembers(autobots.subList(minSize, autobots.size()));
         } else if (decepticons.size() > minSize) {
-            outcome.setSurvivingMembers(decepticons.subList(minSize, decepticons.size() - 1));
+            outcome.setSurvivingMembers(decepticons.subList(minSize, decepticons.size()));
         }
 
         return outcome;
